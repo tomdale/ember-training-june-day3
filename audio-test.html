@@ -1,0 +1,44 @@
+<!doctype html>
+
+<html>
+  <head>
+    <script src="js/libs/jquery-1.8.3.js"></script>
+  </head>
+  <body>
+    <div>
+      <button id="play">Play</button>
+      <button id="pause">Pause</button>
+      <audio id='audio' src="audio/Southern_Nights_-_07_-_All_My_Sorrows.mp3">
+    </div>
+    <div id="duration"></div>
+    <div id="time"></div>
+    <div id="playing"></div>
+    <script>
+      // https://developer.mozilla.org/en-US/docs/DOM/Media_events
+
+      $('#audio').on('loadeddata', function() {
+        $("#duration").html(this.duration);
+      });
+
+      $('#audio').on('timeupdate', function() {
+        $("#time").html(this.currentTime);
+      });
+
+      $('#audio').on('play', function() {
+        $("#playing").html("Playing");
+      });
+
+      $('#audio').on('pause', function() {
+        $("#playing").html("Paused");
+      });
+
+      $('#play').on('click', function() {
+        $('#audio')[0].play();
+      });
+
+      $('#pause').on('click', function() {
+        $('#audio')[0].pause();
+      });
+    </script>
+  </body>
+</html>
