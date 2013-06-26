@@ -91,6 +91,18 @@
       {{else}}
         <button class="play" {{action 'play'}}>▶</button>
       {{/if}}
+
+      {{song-duration current=currentTime duration=duration}}
+    </script>
+
+    <script type="text/x-handlebars" id="components/song-duration">
+      <p class="duration">
+        {{#if showingRemaining}}
+          {{format-duration remaining}}
+        {{else}}
+          {{format-duration current}}
+        {{/if}}
+      <p>
     </script>
 
     <div id="qunit" style="display: none"></div>

@@ -80,6 +80,18 @@ App.AudioPlayerComponent = Ember.Component.extend({
   }
 });
 
+App.SongDurationComponent = Ember.Component.extend({
+  showingRemaining: false,
+
+  remaining: function() {
+    return this.get('duration') - this.get('current');
+  }.property('current', 'duration'),
+
+  click: function() {
+    this.toggleProperty('showingRemaining');
+  }
+});
+
 Ember.Handlebars.helper('format-duration', function(seconds) {
   var minutes = Math.floor(seconds/60);
   var remainingSeconds = seconds % 60;

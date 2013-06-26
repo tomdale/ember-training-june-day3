@@ -25,3 +25,34 @@
 */
 
 step(16, "Click to Toggle Remaining Time");
+
+testComponent('songDuration', "the component should default to showing the current time", function(component) {
+  Ember.run(function() {
+    component.setProperties({
+      current: 5,
+      duration: 125
+    });
+  });
+
+  componentShouldHaveElement(component, 'p.duration', '0:05');
+});
+
+testComponent('songDuration', "clicking the current time should show remaining time", function(component) {
+  Ember.run(function() {
+    component.setProperties({
+      current: 5,
+      duration: 125
+    });
+  });
+
+  click('p.duration', component);
+
+  componentShouldHaveElement(component, 'p.duration', '2:00');
+});
+
+test("Current time should appear in now playing template", function() {
+  click('.album:first a');
+  click('.album-listing tr:first .play');
+
+  shouldHaveElement('.now-playing p.duration');
+});
