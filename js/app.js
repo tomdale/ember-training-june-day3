@@ -27,6 +27,14 @@ App.AlbumRoute = Ember.Route.extend({
 
 App.NowPlayingController = Ember.ObjectController.extend();
 
+App.SongItemController = Ember.ObjectController.extend({
+  needs: 'nowPlaying',
+
+  isPlaying: function() {
+    return this.get('model') === this.get('controllers.nowPlaying.model');
+  }.property('model', 'controllers.nowPlaying.model')
+});
+
 App.Song = Ember.Object.extend();
 App.Album = Ember.Object.extend({
   totalDuration: function() {
